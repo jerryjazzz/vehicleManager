@@ -1,0 +1,99 @@
+<ion-view view-title="Vehicle Dashboard - 28.4.2016" class="dashboardView">
+  
+  <ion-content class="padding">
+
+    <div style="width: 300px; float: right;">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="search" placeholder="Search">
+      </label>
+    </div>
+
+    <div>
+        <button class="button button-positive button-small" ng-click="dashCtrl.openVehiclePage();">Add Vehicle</button>
+      <!--
+        <button class="button button-positive button-small">Create Form</button> 
+        <button class="button button-positive button-small">Email Report</button> 
+        -->
+    </div> 
+
+     <div style="padding-top:20px;">
+        <h3>Needs Action Soon:</h3>
+     </div>
+     <hr />
+
+     <div class="row" style="width:99%; padding-left:15px;">
+            <div class="col col-10">
+              Type
+            </div>
+             <div class="col col-20">
+              License
+            </div>
+             <div class="col col-10">
+              Registration
+            </div>
+             <div class="col col-10">
+              Insurance
+            </div>
+             <div class="col col-10">
+              Kasko
+            </div>
+             <div class="col col-10">
+              Cargo
+            </div>
+            <div class="col col-10">
+              Technical
+            </div>
+             <div class="col col-10">
+              Periodic
+            </div>
+             <div class="col col-10">
+              Status
+            </div>
+        </div>
+    <ion-list>
+      <ion-item ng-repeat="item in dashCtrl.vehiclesList">
+        <div class="row">
+            <div class="col col-10">
+              <i class="icon ion-android-bus"></i>
+              {{item.vehicleType}}
+            </div>
+             <div class="col col-20">
+                <i class="icon ion-android-folder-open"></i>
+              <span> {{item.vehicleVIN}}</span>
+            </div>
+             <div class="col col-10">
+              <i class="icon ion-calendar"></i>
+              {{item.registrationExpiresOn | date:'dd.MM.yyyy'}}
+            </div>
+             <div class="col col-10">
+               <i class="icon ion-calendar"></i>
+              {{item.insuranceExpiresOn | date:'dd.MM.yyyy'}}
+            </div>
+             <div class="col col-10">
+                <i class="icon ion-calendar"></i>
+              {{item.secondInsuranceExpiresOn | date:'dd.MM.yyyy'}}
+            </div>
+             <div class="col col-10">
+                <i class="icon ion-calendar"></i>
+              {{item.cargoInsuranceExpiresOn | date:'dd.MM.yyyy'}}
+            </div>
+            <div class="col col-10">
+               <i class="icon ion-calendar"></i>
+             {{item.techInspectionExpiresOn | date:'dd.MM.yyyy'}}
+            </div>
+             <div class="col col-10">
+                <i class="icon ion-calendar"></i>
+             {{item.maintenanceInspectionExpiresOn | date:'dd.MM.yyyy'}}
+            </div>
+            <div class="col col-10">
+               <i class="icon ion-flag"></i>
+              {{item.activeStatus}}
+            </div>
+        </div>
+     </ion-item>
+  </ion-list>
+
+  </ion-content>
+
+</ion-view>

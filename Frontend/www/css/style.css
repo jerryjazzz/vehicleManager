@@ -1,0 +1,125 @@
+/* Add your own CSS if you like */
+
+.centerDiv{
+  display: inline-block; width:100%; margin: 0 auto; text-align: center;
+}
+.margin-auto{
+    margin: auto;
+}
+.mar-left-10{
+    margin-left: 10px;
+}
+.buttonFullwidth{
+  width: 46% ;
+}
+.fullWidth{
+    width:100%;
+}
+.pad-left-20{
+    padding-left: 20px;
+}
+.pad-left-10{
+    padding-left: 10px;
+}
+
+.pad-top-10{
+    padding-top: 10px;
+}
+
+.morePadding{
+    padding-left:20px;
+    padding-right:20px;
+}
+
+.login-page {
+    background: url(../img/background.jpg);
+    background-size: cover;
+}
+
+.login-div {
+  margin: auto;
+  width:500px;
+  opacity: 0.99 ;
+  padding: 30px;
+}
+
+.dashboardView .col{
+   font-size: 14px;
+}
+
+.dashboardView{
+     background-color: #f9f9f8 ;
+     color: #000;
+}
+
+.menu-item{ background-color: #242832 !important; color: #fff ; border: 1px solid #242832;}
+
+.background-menu{ background-color: #242832; }
+
+.main-content{  background-color: #eee !important;}
+
+.bar.bar-custom {
+    border-color: #242832;
+    background-color: #242832;
+    background-image: linear-gradient(0deg, #c, #242832 50%, transparent 50%);
+    color: #fff; }
+.bar.bar-custom .title {
+    color: #fff; }
+.bar.bar-custom.bar-footer {
+    background-image: linear-gradient(180deg, #242832, #242832 50%, transparent 50%); }
+
+.bar-custom .button {
+    border-color: transparent;
+    background-color: #242832;
+    color: #fff; }
+.bar-custom .button:hover {
+    color: #fff;
+    text-decoration: none; }
+ion-item.item:hover a {
+  color: #fff;
+}
+.bar-custom .button.active, .bar-custom .button.activated {
+    background-color: #242832; 
+    color: #fff;}
+.bar-custom .button.button-clear {
+    border-color: transparent;
+    background: none;
+    box-shadow: none;
+    color: #fff;
+    font-size: 17px; }
+.bar-custom .button.button-icon {
+    border-color: transparent;
+    background: none; }
+
+ion-item a {  background-color: #242832 !important;  color: #fff;}
+
+  .full button span {
+    background-color: limegreen;
+    border-radius: 32px;
+    color: black;
+  }
+  .partially button span {
+    background-color: orange;
+    border-radius: 32px;
+    color: black;
+  }
+  .vehicleForm{
+      color: #777;
+      width: 60%;
+      margin: auto;
+      background-color: #f9f9f8;
+      padding: 20px 30px 30px 30px;
+  }
+  .vehicleForm h4{
+      text-align: left;
+      padding-top:4px;
+      padding-bottom:4px;
+      left: -10px;
+      position: relative;
+  }
+  .addVehiclePage{
+      background-color: #363b4c ;
+  }
+  .formTimeDisplay{
+     width:100%; font-size:16px; font-weight:bold;
+  }
