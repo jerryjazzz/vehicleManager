@@ -220,6 +220,7 @@ angular.module('starter.controllers', [])
 // HOME PAGE CONTROLLER
 .controller('newVehicleController', function($scope, IonicLogin, $state, $ionicLoading, $http, $ionicPopup) {
 
+    var self = this ;
   
     this.initForm = function () {
           this.form = { } ;
@@ -390,8 +391,8 @@ angular.module('starter.controllers', [])
                 template: 'Your Vehicle was added succesfully!'
               });
 
-              this.form.vehicleVIN = "" ;
-              this.form.registrationNumber = "" ;
+              self.form.vehicleVIN = "" ;
+              self.form.registrationNumber = "" ;
                $ionicLoading.hide();
         })
         .error(function(data) {

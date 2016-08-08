@@ -14,7 +14,7 @@ var session = require('express-session');
 var Q = require('q');
 
 // LOCAL DB
-var db = new Sequelize('mydbname', 'root', '', { // YOU MUST FIRST CREATE A DB IN MYSQL CALLED mydbname
+var db = new Sequelize('vehicleManagerDB', 'root', '', { // YOU MUST FIRST CREATE A DB IN MYSQL CALLED mydbname
   host: "localhost",
   port: 3306,
   dialectOptions: {
