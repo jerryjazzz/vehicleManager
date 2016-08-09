@@ -52,7 +52,7 @@
             </div>
         </div>
     <ion-list>
-      <ion-item ng-repeat="item in dashCtrl.vehiclesList">
+      <ion-item ng-repeat="item in dashCtrl.vehiclesList" ng-click="dashCtrl.openVehicleDetails(item.vehicleVIN)">
         <div class="row">
             <div class="col col-10">
               <i class="icon ion-android-bus"></i>
@@ -60,7 +60,7 @@
             </div>
              <div class="col col-20">
                 <i class="icon ion-android-folder-open"></i>
-              <span> {{item.vehicleVIN}}</span>
+              <span>{{item.registrationNumber}}</span>
             </div>
              <div class="col col-10">
               <i class="icon ion-calendar"></i>
@@ -91,6 +91,81 @@
               {{item.activeStatus}}
             </div>
         </div>
+
+        <div style="margin-top:5px;" ng-show="dashCtrl.data.selectedVehicleVIN == item.vehicleVIN">
+            <div class="row">
+              <div class="col col-10">
+                {{item.vehicleMake}}
+            </div>
+             <div class="col col-20">
+               VIN: {{item.vehicleVIN}}
+            </div>
+             <div class="col col-10">
+              <i class="icon ion-calendar"></i>
+              {{item.registeredOn | date:'dd.MM.yyyy'}}
+            </div>
+             <div class="col col-10">
+               <i class="icon ion-calendar"></i>
+              {{item.insuredOn | date:'dd.MM.yyyy'}}
+            </div>
+             <div class="col col-10">
+                <i class="icon ion-calendar"></i>
+               {{item.secondInsuranceOn | date:'dd.MM.yyyy'}}
+            </div>
+             <div class="col col-10">
+                <i class="icon ion-calendar"></i>
+               {{item.secondInsuranceOn | date:'dd.MM.yyyy'}}
+            </div>
+            <div class="col col-10">
+              <i class="icon ion-calendar"></i>
+               {{item.techInspectionOn | date:'dd.MM.yyyy'}}
+            </div>
+             <div class="col col-10">
+                <i class="icon ion-calendar"></i>
+               {{item.maintenanceInspectionOn | date:'dd.MM.yyyy'}}
+            </div>
+            <div class="col col-10">
+        
+            </div>
+          </div>
+
+           <div class="row" style="margin-top:5px;">
+              <div class="col col-10">
+               Year: {{item.vehicleYear}}
+            </div>
+             <div class="col col-20">
+               Color: {{item.vehicleColor}}
+            </div>
+             <div class="col col-10">
+              {{item.registrationCompany}}
+            </div>
+             <div class="col col-10">
+              
+              {{item.insuranceCompany}}
+            </div>
+             <div class="col col-10">
+               {{item.secondInsuranceCompany}}
+            </div>
+             <div class="col col-10">
+               {{item.cargoInsuranceCompany}}
+            </div>
+            <div class="col col-10">
+             
+            </div>
+             <div class="col col-10">
+               
+            </div>
+            <div class="col col-10">
+        
+            </div>
+          </div>
+
+          <div style="margin-top:5px;">
+              <button class="button button-positive button-small" style="width:60px;">Edit</button>
+              <button class="button button-small" style="width:60px;">Delete</button>
+          </div>
+        </div>
+     
      </ion-item>
   </ion-list>
 

@@ -5,6 +5,19 @@ angular.module('starter.controllers', [])
 
  var self = this ;
 
+ this.data = {} ;
+
+ this.openVehicleDetails = function(VIN){
+   console.log('open vehicle ' + VIN);
+   if (this.data.selectedVehicleVIN === VIN ){
+     this.data.selectedVehicleVIN = "" ;
+   }
+   else{
+      this.data.selectedVehicleVIN = VIN ;
+   }
+  
+ }
+
  $scope.items = [
     { id: 0, vehicleId: 123, expires: '12/20/2012' },
     { id: 1 },
