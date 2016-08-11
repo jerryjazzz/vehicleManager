@@ -66,7 +66,7 @@ angular.module('starter.controllers', [])
 
     this.session = JSON.parse( window.localStorage['session']);
 
-        $http.post("http://localhost:8100/getVehicles", { params:    
+        $http.post("https://monicle.herokuapp.com/getVehicles", { params:    
                       { 
                         "username": this.session.username,
                         "type": "getVehicles" 
@@ -128,7 +128,7 @@ angular.module('starter.controllers', [])
             console.log('checking session');
             var sesh = JSON.parse(window.localStorage['session']) ;
 
-              $http.post("http://localhost:8100/checkSession",
+              $http.post("https://monicle.herokuapp.com/checkSession",
                 { params: { "session": JSON.stringify(sesh)}})
                   .success(function(response) {
                    if ( response == "error" || response == "LOGIN_FAIL" ){
@@ -152,31 +152,32 @@ angular.module('starter.controllers', [])
 // LOGIN PAGE CONTROLLER
 .controller('IonicLogin', function($scope, IonicLogin, $ionicLoading, $cordovaOauth, $http) {
 
+ var self = this;
   // REMOVE THE USER LOGIN INFORMATION WHEN RETURNING TO LOGIN SCREEN
   $scope.$on('$ionicView.enter', function(e) {
-      $scope.data = {} ;
+      self.data = {} ;
   });
 
   // LOGOUT FUNCTION
-  $scope.logout = function(){
+  this.logout = function(){
        IonicLogin.logout();
   }
 
   // LOGIN FUNCTION
-  $scope.login = function(){
-       IonicLogin.login($scope.data.email, $scope.data.password);
+  this.login = function(){
+       IonicLogin.login(self.data.email, self.data.password);
   }
 
    // SIGNUP FUNCTION
-   $scope.signUp = function(){
-      IonicLogin.signUp($scope.data.email, $scope.data.password);
+   this.signUp = function(){
+      IonicLogin.signUp(self.data.email, self.data.password);
   }
 
   // FACEBOOK LOGIN
-  $scope.facebookLogin = function() {
+  this.facebookLogin = function() {
 
        var appID = "928219620607005"; // PUT YOUR FACEBOOK APP ID HERE
-       var redirectURL = "http://localhost/callback" ; // PUT YOUR APP CALLBACK URL HERE
+       var redirectURL = "https://localhost/callback" ; // PUT YOUR APP CALLBACK URL HERE
 
        $cordovaOauth.facebook(appID, ["email"], {redirect_uri: redirectURL})
             .then(function(result){
@@ -195,9 +196,9 @@ angular.module('starter.controllers', [])
     }
 
     // TWITTER LOGIN
-    $scope.twitterLogin = function(){
+    this.twitterLogin = function(){
 
-          // YOUR TWITTER CALLBACK WILL HAVE TO BE HTTP://LOCALHOST/CALLBACK FOR TESTING BUT
+          // YOUR TWITTER CALLBACK WILL HAVE TO BE https://localhost/CALLBACK FOR TESTING BUT
           // IT NEEDS TO BE SET VIA TINYURL.COM
            var consumerKey = "fMNg8ecQmeOTHNFGgJKsGwYbw"; // PUT YOUR CONSUMER KEY HERE
            var consumerSecretKey = "cPOHMNSrDXLb1dXrVQP0e3CaeSlVGONzYgGq92gpPh38q9g51Q"; // PUT YOUR SECRET KEY HERE
@@ -218,11 +219,11 @@ angular.module('starter.controllers', [])
     }
 
     // GOOGLE PLUS LOGIN
-    $scope.googleLogin = function(){
+    this.googleLogin = function(){
 
           // CREATE A PROJECT ON GOOGLE DEVELOPER CONSOLE AND PUT YOUR CLIENT ID HERE
           // GOOGLE OAUTH DOES NOT GIVE US EMAIL RIGHT AWAY SO WE HAVE TO MAKE 2 API CALLS
-          $cordovaOauth.google("584540832467-tv8i4a8utt7tk5aih3ej8a6gc65sjk87.apps.googleusercontent.com", ["email"], {redirect_uri: "http://localhost/callback"}).then(function(result) {
+          $cordovaOauth.google("584540832467-tv8i4a8utt7tk5aih3ej8a6gc65sjk87.apps.googleusercontent.com", ["email"], {redirect_uri: "https://localhost/callback"}).then(function(result) {
                   //   alert("Response Object -> " + JSON.stringify(result));
 
                   $http.get("https://www.googleapis.com/plus/v1/people/me", // TO GET THE USER'S EMAIL
@@ -236,7 +237,7 @@ angular.module('starter.controllers', [])
      }
 
     // INSTAGRAM LOGIN
-    $scope.instagramLogin = function(){
+    this.instagramLogin = function(){
 
         var clientID = "a0c936f91d4d4219b3230fb96650216d" ; // PUT YOUR CLIENT ID HERE
         var redirectURL = "http://tinyurl.com/krmpchb" // PUT YOUR REDIRECT URL HERE
@@ -395,7 +396,7 @@ angular.module('starter.controllers', [])
     this.session = JSON.parse( window.localStorage['session']) ;
     console.log(this.session.username) ;
 
-    $http.post("http://localhost:8100/addVehicle", { params:
+    $http.post("https://monicle.herokuapp.com/addVehicle", { params:
               
               { 
                 "vehicleId" : this.form.vehicleId,

@@ -5,10 +5,10 @@ angular.module('starter.services', [])
   function login(email, password){
 
       $ionicLoading.show({
-              template: 'Creating Account...'
+              template: 'Logging In...'
           });
 
-      $http.post("http://localhost:8100/login",
+      $http.post("https://monicle.herokuapp.com/login",
              { params: {
                          "email": email,
                          "password": password}
@@ -45,7 +45,7 @@ angular.module('starter.services', [])
               template: 'Logging Out...'
           });
 
-        $http.post("http://localhost:8100/logout",
+        $http.post("https://monicle.herokuapp.com/logout",
              { params: { "email": email }})
                .success(function(response) {
 
@@ -79,7 +79,7 @@ angular.module('starter.services', [])
               template: 'Creating Account...'
           });
 
-            $http.post("http://localhost:8100/signUp",
+            $http.post("https://monicle.herokuapp.com/signUp",
                { params: {
                            "email": email,
                            "password": password }
@@ -117,7 +117,7 @@ angular.module('starter.services', [])
               template: 'Loggin In...'
           });
 
-            $http.post("http://localhost:8100/socialLogin",
+            $http.post("https://monicle.herokuapp.com/socialLogin",
                { params: {
                            "email": email,
                            "password": password }

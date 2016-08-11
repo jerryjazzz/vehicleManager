@@ -1,5 +1,6 @@
 /* MAIN BACKEND APP.JS */
 var express = require('express');
+var cors = require('cors');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -14,6 +15,7 @@ var session = require('express-session');
 var Q = require('q');
 
 // LOCAL DB
+/*
 var db = new Sequelize('vehicleManagerDB', 'root', '', { // YOU MUST FIRST CREATE A DB IN MYSQL CALLED mydbname
   host: "localhost",
   port: 3306,
@@ -23,6 +25,19 @@ var db = new Sequelize('vehicleManagerDB', 'root', '', { // YOU MUST FIRST CREAT
      multipleStatements: true
   }
 })
+*/
+
+// jawsDB
+var db = new Sequelize('idobi31oyz1y4mo8', 'n8a12symok6wklqa', 'yr9mt969d70msc0u', { // YOU MUST FIRST CREATE A DB IN MYSQL CALLED mydbname
+  host: "m60mxazb4g6sb4nn.chr7pe7iynqr.eu-west-1.rds.amazonaws.com",
+  port: 3306,
+  dialectOptions: {
+     charset: 'utf8mb4',
+     supportBigNumbers: true,
+     multipleStatements: true
+  }
+})
+
 
  // DB TABLES DEFINITION
 	Users = db.define('users', {
@@ -328,6 +343,8 @@ app.use(session({
 }));
 
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(cors());
 
 // Session-persisted message middleware
 app.use(function(req, res, next){

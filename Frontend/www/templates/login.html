@@ -6,15 +6,15 @@
     <form name="loginForm">
         <div class="list list-inset">
                 <label class="item item-input">
-                    <input required type="text" placeholder="Email" ng-model="data.email">
+                    <input required type="text" placeholder="Email" ng-model="loginCtrl.data.email">
                 </label>
                 <label class="item item-input">
-                    <input required type="password" placeholder="Password" ng-model="data.password">
+                    <input required type="password" placeholder="Password" ng-model="loginCtrl.data.password">
                 </label>
         </div>
     </form>
-        <button class="button button-block button-calm" ng-disabled="!loginForm.$valid" ng-click="login()">Login</button>
-        <button class="button button-block button-dark" ng-disabled="!loginForm.$valid" ng-click="signUp()">Create Account</button>
+        <button class="button button-block button-calm" ng-disabled="!loginForm.$valid" ng-click="loginCtrl.login()">Login</button>
+     <!--   <button class="button button-block button-dark" ng-disabled="!loginForm.$valid" ng-click="signUp()">Create Account</button>-->
 
     <!--
     <div class="centerDiv">
