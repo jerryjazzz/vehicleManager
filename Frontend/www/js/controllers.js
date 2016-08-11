@@ -29,10 +29,10 @@ angular.module('starter.controllers', [])
           || (item.registrationNumber.toLowerCase().indexOf(filterKey) > -1 ) 
           || (String(item.vehicleYear).indexOf(filterKey) > -1 )
           || (item.activeStatus.toLowerCase().indexOf(filterKey) > -1 )
-          || (item.registrationNumber.toLowerCase().indexOf(filterKey) > -1 )
-          || (item.insuranceNumber.toLowerCase().indexOf(filterKey) > -1 )
-          || (item.secondInsuranceNumber.toLowerCase().indexOf(filterKey) > -1 )
-          || (item.cargoInsuranceNumber.toLowerCase().indexOf(filterKey) > -1 )
+          || (String(item.registrationNumber).toLowerCase().indexOf(filterKey) > -1 )
+          || (String(item.insuranceNumber).toLowerCase().indexOf(filterKey) > -1 )
+          || (String(item.secondInsuranceNumber).toLowerCase().indexOf(filterKey) > -1 )
+          || (String(item.cargoInsuranceNumber).toLowerCase().indexOf(filterKey) > -1 )
           ) {
         return true;
       } else {
