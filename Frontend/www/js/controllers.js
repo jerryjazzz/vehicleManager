@@ -1,11 +1,13 @@
 angular.module('starter.controllers', [])
 
 // HOME PAGE CONTROLLER
-.controller('DashCtrl', function($scope, IonicLogin, $state, $http, $ionicLoading) {
+.controller('DashCtrl', function($scope, $rootScope, IonicLogin, $state, $http, $ionicLoading) {
 
  var self = this ;
-
  this.data = {} ;
+ this.fileteredList = {} ;
+ this.data.filterKey = "" ;
+
 
  this.openVehicleDetails = function(VIN){
    console.log('open vehicle ' + VIN);
@@ -14,24 +16,34 @@ angular.module('starter.controllers', [])
    }
    else{
       this.data.selectedVehicleVIN = VIN ;
-   }
-  
+   } 
  }
 
- $scope.items = [
-    { id: 0, vehicleId: 123, expires: '12/20/2012' },
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-    { id: 6 },
-    { id: 7 },
-    { id: 8 },
-    { id: 9 },
-    { id: 10 } ];
+ // FILTER VEHICLES
+ this.filterItems = function(){
+  var filterKey =  this.data.filterKey.toLowerCase();
+   console.log('searching for ' + filterKey);
+   this.data.fileteredList =  self.vehiclesList.filter(function (item) {
+      console.log('looking at item: ' + item);
+      if( (item.vehicleVIN.toLowerCase().indexOf(filterKey) > -1 ) 
+          || (item.registrationNumber.toLowerCase().indexOf(filterKey) > -1 ) 
+          || (String(item.vehicleYear).indexOf(filterKey) > -1 )
+          || (item.activeStatus.toLowerCase().indexOf(filterKey) > -1 )
+          ) {
+        return true;
+      } else {
+        return false;
+      }
+  });
+ }
 
   this.openVehiclePage = function(){
+    $rootScope.selectedItem =  {} ;
+    $rootScope.selectedItem.activeStatus = "Active" ;
+    $rootScope.selectedItem.vehicleMake = "N/A" ;    
+    $rootScope.selectedItem.vehicleType = "Semi-truck" ;
+    $rootScope.selectedItem.vehicleId = "-1";
+   
     $state.go('app.addVehicle');
   }
 
@@ -39,6 +51,13 @@ angular.module('starter.controllers', [])
     $state.go('app.home');
   }
 
+ this.editItem = function($event, item){
+   $event.stopPropagation();
+   console.log('edit item ' + item.vehicleId);
+   $rootScope.selectedItem = item ;
+   $state.go('app.addVehicle');
+ }
+ // GET VEHICLES FROM DB
   this.getVehicles = function (){
 
     this.session = JSON.parse( window.localStorage['session']);
@@ -53,6 +72,7 @@ angular.module('starter.controllers', [])
                       self.vehiclesList = data ;
                       console.log(data);
                       $ionicLoading.hide();
+                      self.filterItems();
                 })
                 .error(function(data) {
                     $ionicLoading.hide();
@@ -231,21 +251,11 @@ angular.module('starter.controllers', [])
 })
 
 // HOME PAGE CONTROLLER
-.controller('newVehicleController', function($scope, IonicLogin, $state, $ionicLoading, $http, $ionicPopup) {
+.controller('newVehicleController', function($scope, $rootScope, IonicLogin, $state, $ionicLoading, $http, $ionicPopup) {
 
     var self = this ;
   
-    this.initForm = function () {
-          this.form = { } ;
-
-          this.form.vehicleStatus = "Active" ;
-          this.form.vehicleMake = "N/A" ;    
-          this.form.vehicleType = "Semi-truck" ;
-    }
-   
-    this.initForm();
-
-    this.today = function() {
+   this.today = function() {
       console.log('today called');
       this.registrationDate = new Date();
       this.insuranceDate = new Date();
@@ -254,9 +264,30 @@ angular.module('starter.controllers', [])
       this.techInspectionDate = new Date();    
       this.maintenanceInspectionDate = new Date();
     };
-    
-    this.today();
 
+    this.initForm = function () {
+           
+          self.form = $rootScope.selectedItem ;
+          
+         //  self.form.vehicleVIN =  $rootScope.selectedItem.vehicleVIN;
+         //  self.form.registrationNumber = $rootScope.selectedItem.registrationNumber ;
+
+          if (!this.form.vehicleId || this.form.vehicleId == "-1"){
+             
+               this.today();
+          }   
+          else{
+              this.registrationDate = new Date(this.form.registeredOn);
+              this.insuranceDate = new Date(this.form.insuredOn);
+              this.secondInsuranceDate = new Date(this.form.secondInsuranceOn);
+              this.cargoInsuranceDate = new Date(this.form.cargoInsuranceOn);
+              this.techInspectionDate = new Date(this.form.techInspectionOn);    
+              this.maintenanceInspectionDate = new Date(this.form.maintenanceInspectionOn);
+          }  
+    }
+   
+    this.initForm();
+ 
     this.clear = function() {
       this.dt = null;
     };
@@ -363,9 +394,10 @@ angular.module('starter.controllers', [])
     $http.post("http://localhost:8100/addVehicle", { params:
               
               { 
+                "vehicleId" : this.form.vehicleId,
                 "username": this.session.username,
                 "vehicleType": this.form.vehicleType,
-                 "vehicleStatus": this.form.vehicleStatus,
+                 "activeStatus": this.form.activeStatus,
                  "vehicleMake": this.form.vehicleMake,
                  "vehicleYear": this.form.vehicleYear,
                  "vehicleVIN": this.form.vehicleVIN,
@@ -401,7 +433,7 @@ angular.module('starter.controllers', [])
 
               $ionicPopup.alert({
                 title: 'Vehicle Added',
-                template: 'Your Vehicle was added succesfully!'
+                template: 'Your Vehicle was saved succesfully!'
               });
 
               self.form.vehicleVIN = "" ;
@@ -415,7 +447,6 @@ angular.module('starter.controllers', [])
     }
 
     this.clearForm = function(){
-      this.initForm();
+      self.form = {} ;
     }
-    
 });

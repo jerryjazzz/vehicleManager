@@ -174,6 +174,9 @@ var db = new Sequelize('vehicleManagerDB', 'root', '', { // YOU MUST FIRST CREAT
 			registrationExpiresOn:{
 					type:Sequelize.DATE
 			},
+			registrationMonths:{
+				  type: Sequelize.INTEGER
+			},
 			registrationNumber: {
 					type: Sequelize.STRING
 		  },
@@ -186,6 +189,9 @@ var db = new Sequelize('vehicleManagerDB', 'root', '', { // YOU MUST FIRST CREAT
 			insuranceExpiresOn: {
 		  		type: Sequelize.DATE
 		  },
+			insuranceMonths:{
+				  type: Sequelize.INTEGER
+			},
 			insuranceNumber: {
 				  type: Sequelize.STRING
 			},
@@ -207,6 +213,9 @@ var db = new Sequelize('vehicleManagerDB', 'root', '', { // YOU MUST FIRST CREAT
 			secondInsuranceExpiresOn: {
 					type: Sequelize.DATE
 			},
+			secondInsuranceMonths:{
+				  type: Sequelize.INTEGER
+			},
 			secondInspurancePrice: {
 				 type: Sequelize.INTEGER
 			},
@@ -215,6 +224,9 @@ var db = new Sequelize('vehicleManagerDB', 'root', '', { // YOU MUST FIRST CREAT
 			},
 			cargoInsuranceExpiresOn: {
 					type: Sequelize.DATE
+			},
+			cargoInsuranceMonths:{
+				  type: Sequelize.INTEGER
 			},
 			cargoInsuranceNumber: {
 				  type: Sequelize.STRING
@@ -231,11 +243,17 @@ var db = new Sequelize('vehicleManagerDB', 'root', '', { // YOU MUST FIRST CREAT
 			techInspectionExpiresOn: {
 					type:Sequelize.DATE
 			},
+			techInspectionMonths:{
+				  type: Sequelize.INTEGER
+			},
 			maintenanceInspectionOn:{
 					type:Sequelize.DATE
 			},
 			maintenanceInspectionExpiresOn:{
 					type:Sequelize.DATE
+			},
+			maintenanceInspectionMonths:{
+				  type: Sequelize.INTEGER
 			},
 		  palets: {
 					type: Sequelize.BIGINT, defaultValue: 0
