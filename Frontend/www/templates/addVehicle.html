@@ -17,6 +17,7 @@
                           <option>Boat</option>
                           <option>Airplane</option>
                           <option>Helicopter</option>
+                          <option>Other</option>
                         </select>
                       </label>
                   </div>
@@ -48,18 +49,25 @@
                     </label>
                   </div>
 
+                   <div class="list">
+                    <label class="item item-input">
+                      <span class="input-label">Vehicle Make</span>
+                      <input type="text" placeholder="Enter Vehicle Make" ng-model="newCtrl.form.vehicleMake">
+                    </label>
+                  </div>
+
                   <div class="list">
-                      <label class="item item-input item-select">
-                        <div class="input-label">
-                          Vehicle Make
-                        </div>
-                        <select ng-model="newCtrl.form.vehicleMake">
-                          <option selected>N/A</option>
-                          <option>Mercedes</option>
-                          <option>BMW</option>
-                          <option>Volvo</option>
-                        </select>
-                      </label>
+                    <label class="item item-input">
+                      <span class="input-label">Vehicle Model</span>
+                      <input type="text" placeholder="Enter Vehicle Model" ng-model="newCtrl.form.vehicleModel">
+                    </label>
+                  </div>
+
+                  <div class="list">
+                    <label class="item item-input">
+                      <span class="input-label">Vehicle Color</span>
+                      <input type="text" placeholder="Enter Vehicle Color" ng-model="newCtrl.form.vehicleColor">
+                    </label>
                   </div>
               
               <hr />
@@ -212,6 +220,13 @@
                   <span class="input-label">Number of Months</span>
                   <input type="text" placeholder="Enter number of months it is valid for" ng-model="newCtrl.form.maintenanceInspectionMonths">
                 </label>  
+
+
+              <hr />
+               <ion-label>Notes:</ion-label>
+              <ion-item>
+                <textarea rows="6" style="width:100%" ng-attr-placeholder="enter long description here..." ng-model="newCtrl.form.vehicleDescription"></textarea>
+              </ion-item>  
      
         <hr />
         <div class="margin-auto">

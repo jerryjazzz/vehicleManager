@@ -18,7 +18,8 @@
     </div> 
 
      <div style="padding-top:20px;">
-        <h3>List of Vehicles:</h3>
+        <h3>List of Vehicles</h3>
+        <p>Total vehicles: {{dashCtrl.data.fileteredList.length}}</p>
      </div>
      <hr />
 
@@ -131,10 +132,10 @@
 
            <div class="row" style="margin-top:5px;">
               <div class="col col-10">
-               Year: {{item.vehicleYear}}
+              {{item.vehicleModel}}
             </div>
              <div class="col col-20">
-               Color: {{item.vehicleColor}}
+               {{item.vehicleColor}}
             </div>
              <div class="col col-10">
               {{item.registrationCompany}}
@@ -156,6 +157,15 @@
             </div>
             <div class="col col-10">
         
+            </div>
+          </div>
+
+          <div class="row" style="margin-top:5px; height:60px;">
+              <div class="col col-10">
+               Year: {{item.vehicleYear}}
+             </div>
+             <div class="col col-20" style="height:60px;">
+               <div style="height: 100px;width:600px; overflow:auto; white-space: normal; word-wrap:break-word !important;">{{item.vehicleDescription}}</div>
             </div>
           </div>
 

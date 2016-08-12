@@ -11,10 +11,11 @@ angular.module('starter.services', [])
       $http.post("https://monicle.herokuapp.com/login",
              { params: {
                          "email": email,
+                         "username": email,
                          "password": password}
                         })
                .success(function(response) {
-
+                    console.log(response);
                     $ionicLoading.hide();
 
               if ( response == "LOGIN_FAIL" ){

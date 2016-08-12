@@ -45,6 +45,9 @@ router.post('/', function(req, res, next) {
 			vehicleType: req.body.params.vehicleType,
 			vehicleMake: req.body.params.vehicleMake,
 			vehicleYear: req.body.params.vehicleYear,
+			vehicleColor: req.body.params.vehicleColor,
+			vehicleModel: req.body.params.vehicleModel,
+			vehicleDescription: req.body.params.vehicleDescription,
 			
 			registrationNumber: req.body.params.registrationNumber,
 			registeredOn: req.body.params.registrationDate,

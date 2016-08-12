@@ -26,13 +26,16 @@ angular.module('starter.controllers', [])
    this.data.fileteredList =  self.vehiclesList.filter(function (item) {
       console.log('looking at item: ' + item);
       if( (item.vehicleVIN.toLowerCase().indexOf(filterKey) > -1 ) 
-          || (item.registrationNumber.toLowerCase().indexOf(filterKey) > -1 ) 
+          || (String(item.registrationNumber).toLowerCase().indexOf(filterKey) > -1 ) 
           || (String(item.vehicleYear).indexOf(filterKey) > -1 )
-          || (item.activeStatus.toLowerCase().indexOf(filterKey) > -1 )
+          || (String(item.activeStatus).toLowerCase().indexOf(filterKey) > -1 )
           || (String(item.registrationNumber).toLowerCase().indexOf(filterKey) > -1 )
           || (String(item.insuranceNumber).toLowerCase().indexOf(filterKey) > -1 )
           || (String(item.secondInsuranceNumber).toLowerCase().indexOf(filterKey) > -1 )
           || (String(item.cargoInsuranceNumber).toLowerCase().indexOf(filterKey) > -1 )
+          || (String(item.vehicleColor).toLowerCase().indexOf(filterKey) > -1 )
+          || (String(item.vehicleMake).toLowerCase().indexOf(filterKey) > -1 )
+          || (String(item.vehicleModel).toLowerCase().indexOf(filterKey) > -1 )
           ) {
         return true;
       } else {
@@ -64,11 +67,11 @@ angular.module('starter.controllers', [])
  // GET VEHICLES FROM DB
   this.getVehicles = function (){
 
-    this.session = JSON.parse( window.localStorage['session']);
+    self.session = JSON.parse( window.localStorage['session']);
 
         $http.post("https://monicle.herokuapp.com/getVehicles", { params:    
                       { 
-                        "username": this.session.username,
+                        "username": self.session.username,
                         "type": "getVehicles" 
                       }
                     })
@@ -131,6 +134,7 @@ angular.module('starter.controllers', [])
               $http.post("https://monicle.herokuapp.com/checkSession",
                 { params: { "session": JSON.stringify(sesh)}})
                   .success(function(response) {
+                    console.log(response);
                    if ( response == "error" || response == "LOGIN_FAIL" ){
                         $state.go('login');
                    }
@@ -256,9 +260,12 @@ angular.module('starter.controllers', [])
 })
 
 // HOME PAGE CONTROLLER
-.controller('newVehicleController', function($scope, $rootScope, IonicLogin, $state, $ionicLoading, $http, $ionicPopup) {
+.controller('newVehicleController', function($scope, $rootScope, IonicLogin, $state, 
+                                              $ionicLoading, $http, $ionicPopup) {
 
-    var self = this ;
+  var self = this ;
+
+  this.form = $rootScope.selectedItem ;
   
    this.today = function() {
       console.log('today called');
@@ -271,15 +278,16 @@ angular.module('starter.controllers', [])
     };
 
     this.initForm = function () {
-           
-          self.form = $rootScope.selectedItem ;
-          
-         //  self.form.vehicleVIN =  $rootScope.selectedItem.vehicleVIN;
-         //  self.form.registrationNumber = $rootScope.selectedItem.registrationNumber ;
 
-          if (!this.form.vehicleId || this.form.vehicleId == "-1"){
+          if (!this.form || !this.form.vehicleId || this.form.vehicleId == "-1"){
              
-               this.today();
+              this.today();
+
+              this.form = {} ;
+              this.form.activeStatus = "Active" ;
+              this.form.vehicleMake = "N/A" ;    
+              this.form.vehicleType = "Semi-truck" ;
+              this.form.vehicleId = "-1";
           }   
           else{
               this.registrationDate = new Date(this.form.registeredOn);
@@ -404,8 +412,11 @@ angular.module('starter.controllers', [])
                 "vehicleType": this.form.vehicleType,
                  "activeStatus": this.form.activeStatus,
                  "vehicleMake": this.form.vehicleMake,
+                 "vehicleModel": this.form.vehicleModel,
+                 "vehicleColor": this.form.vehicleColor,
                  "vehicleYear": this.form.vehicleYear,
                  "vehicleVIN": this.form.vehicleVIN,
+                 "vehicleDescription": this.form.vehicleDescription,
                   
                  "registrationNumber": this.form.registrationNumber,
                  "registrationDate" : this.registrationDate,

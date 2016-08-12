@@ -3,7 +3,7 @@
 
   <div class="login-div">
 
-    <form name="loginForm">
+    <form name="loginForm" ng-submit="loginCtrl.login()">
         <div class="list list-inset">
                 <label class="item item-input">
                     <input required type="text" placeholder="Email" ng-model="loginCtrl.data.email">
@@ -12,9 +12,10 @@
                     <input required type="password" placeholder="Password" ng-model="loginCtrl.data.password">
                 </label>
         </div>
+          <button type="submit" class="button button-block button-calm" ng-disabled="!loginForm.$valid">Login</button>
+   
     </form>
-        <button class="button button-block button-calm" ng-disabled="!loginForm.$valid" ng-click="loginCtrl.login()">Login</button>
-     <!--   <button class="button button-block button-dark" ng-disabled="!loginForm.$valid" ng-click="signUp()">Create Account</button>-->
+      <!--   <button class="button button-block button-dark" ng-disabled="!loginForm.$valid" ng-click="signUp()">Create Account</button>-->
 
     <!--
     <div class="centerDiv">
