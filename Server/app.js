@@ -404,7 +404,7 @@ app.post('/login', function(req, res){
 				req.session.username = req.body.params.username;
 		  
 				console.log(" saving session user ");
-				res.send(req.session.user);
+				res.send(req.session.username);
 			  });
 			} else {
 		

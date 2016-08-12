@@ -71,7 +71,7 @@ angular.module('starter.controllers', [])
 
         $http.post("https://monicle.herokuapp.com/getVehicles", { params:    
                       { 
-                        "username": self.session.username,
+                        "username": self.session,
                         "type": "getVehicles" 
                       }
                     })
@@ -402,13 +402,13 @@ angular.module('starter.controllers', [])
 
     console.log('makeVehicle');
     this.session = JSON.parse( window.localStorage['session']) ;
-    console.log(this.session.username) ;
+    console.log(this.session) ;
 
     $http.post("https://monicle.herokuapp.com/addVehicle", { params:
               
               { 
                 "vehicleId" : this.form.vehicleId,
-                "username": this.session.username,
+                "username": this.session,
                 "vehicleType": this.form.vehicleType,
                  "activeStatus": this.form.activeStatus,
                  "vehicleMake": this.form.vehicleMake,

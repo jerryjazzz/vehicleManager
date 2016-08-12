@@ -46,7 +46,7 @@ router.post('/', function(req, res, next) {
 										req.session.username = req.body.params.email;
 		  
 										console.log(" saving session user ");
-										res.send(req.session.user);
+										res.send(req.session.username);
 								// res.send("success");
 								})
 								 return "success";

@@ -9,7 +9,7 @@ router.post('/', function(req, res, next) {
 	 if (req.body.params.type == "getVehicles"){
 		console.log(" looking for user vehicles ");
 	
-		Vehicles.findAll({ order: [['createdAt', 'DESC']] , where: { username: req.body.params.username }, include: [ Users] } ).then(function(vehicles) {
+		Vehicles.findAll({ order: [['createdAt', 'DESC']] , where: { username: req.body.params.username }} ).then(function(vehicles) {
 				console.log(" in find user ");
 				console.log("found vehicles " + JSON.stringify(vehicles) );
 		
