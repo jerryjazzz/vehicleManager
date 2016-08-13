@@ -11,6 +11,11 @@
 
     <div>
         <button class="button button-positive button-small" ng-click="dashCtrl.openVehiclePage();">Add Vehicle</button>
+    
+        <button class="button button-positive button-small" ng-click="dashCtrl.showExpiringVehicles();">Expiring Vehicles</button>
+    
+        <button class="button button-positive button-small" ng-click="dashCtrl.showAllVehicles();">All Vehicles</button>
+    
       <!--
         <button class="button button-positive button-small">Create Form</button> 
         <button class="button button-positive button-small">Email Report</button> 
@@ -20,6 +25,7 @@
      <div style="padding-top:20px;">
         <h3>List of Vehicles</h3>
         <p>Total vehicles: {{dashCtrl.data.fileteredList.length}}</p>
+        <p>Expiring vehicles: {{dashCtrl.data.expiringVehicleList.length}}</p>
      </div>
      <hr />
 

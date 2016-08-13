@@ -198,6 +198,9 @@ var db = new Sequelize('idobi31oyz1y4mo8', 'n8a12symok6wklqa', 'yr9mt969d70msc0u
 			registrationPrice: {
 				 type: Sequelize.INTEGER
 			},
+			registrationDoc: {
+				type: Sequelize.STRING
+			},
 			insuredOn:{
 					type: Sequelize.DATE
 			},
@@ -215,6 +218,9 @@ var db = new Sequelize('idobi31oyz1y4mo8', 'n8a12symok6wklqa', 'yr9mt969d70msc0u
 			},
 			inspurancePrice: {
 				 type: Sequelize.INTEGER
+			},
+			insuranceDoc: {
+				 type: Sequelize.STRING
 			},
 			secondInsuranceNumber: {
 				  type: Sequelize.STRING
@@ -234,6 +240,9 @@ var db = new Sequelize('idobi31oyz1y4mo8', 'n8a12symok6wklqa', 'yr9mt969d70msc0u
 			secondInspurancePrice: {
 				 type: Sequelize.INTEGER
 			},
+			secondInsuranceDoc: {
+				 type: Sequelize.STRING
+			},
 			cargoInsuranceOn: {
 					type: Sequelize.DATE
 			},
@@ -252,6 +261,9 @@ var db = new Sequelize('idobi31oyz1y4mo8', 'n8a12symok6wklqa', 'yr9mt969d70msc0u
 			cargoInspurancePrice: {
 				 type: Sequelize.INTEGER
 			},
+			cargoInsuranceDoc: {
+				 type: Sequelize.STRING
+			},
 			techInspectionOn: {
 					type:Sequelize.DATE
 			},
@@ -261,6 +273,9 @@ var db = new Sequelize('idobi31oyz1y4mo8', 'n8a12symok6wklqa', 'yr9mt969d70msc0u
 			techInspectionMonths:{
 				  type: Sequelize.INTEGER
 			},
+			techInsuranceDoc: {
+				 type: Sequelize.STRING
+			},
 			maintenanceInspectionOn:{
 					type:Sequelize.DATE
 			},
@@ -269,6 +284,9 @@ var db = new Sequelize('idobi31oyz1y4mo8', 'n8a12symok6wklqa', 'yr9mt969d70msc0u
 			},
 			maintenanceInspectionMonths:{
 				  type: Sequelize.INTEGER
+			},
+			maintenanceInspectionDoc: {
+				 type: Sequelize.STRING
 			},
 		  palets: {
 					type: Sequelize.BIGINT, defaultValue: 0

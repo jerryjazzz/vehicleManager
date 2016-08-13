@@ -5,6 +5,7 @@ var Sequelize = require("sequelize");
 /* GET vehicles. */
 router.post('/', function(req, res, next) {
 	
+	console.log('get vehicles called with ');
 	// HANDLE DIFFERENT POST REQUESTS
 	 if (req.body.params.type == "getVehicles"){
 		console.log(" looking for user vehicles ");
@@ -19,6 +20,37 @@ router.post('/', function(req, res, next) {
 				res.send('error_getting_vehicles');
 		  });
 	}
+
+	// GET ONLY EXPIRING VEHICLES
+	 if (req.body.params.type == "getExpiringVehicles"){
+		console.log(" looking for expiring vehicles ");
+
+		var reminder = new Date();
+		reminder = reminder.setMonth(reminder.getMonth() + 1) ; //set reminder to one month ago
+
+		Vehicles.findAll({ order: [['createdAt', 'DESC']] , 
+				where: { username: req.body.params.username,
+						 $and: {
+							 $or: [
+								{registrationExpiresOn: { $lt: reminder }},
+								{insuranceExpiresOn: { $lt: reminder }},
+								{secondInsuranceExpiresOn: { $lt: reminder }},
+								{cargoInsuranceExpiresOn: { $lt: reminder }},
+								{techInspectionExpiresOn: { $lt: reminder }},
+								{maintenanceInspectionExpiresOn: { $lt: reminder }}
+							  ]
+							}				
+						 }} ).then(function(vehicles) {
+				console.log(" in expiring vehicles ");
+				console.log("found vehicles " + JSON.stringify(vehicles) );
+		
+				  res.send(vehicles);
+			}).catch(function(err) {
+				console.log(" can't find vehicles " + err);
+				res.send('error_getting_vehicles');
+		  });
+	}
+
 	/*
 	else if (req.body.params.type == "city"){ // CITY WIDE
 		console.log(" looking for local posts");

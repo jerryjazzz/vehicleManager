@@ -63,6 +63,7 @@ angular.module('starter.controllers', [])
    $rootScope.selectedItem = item ;
    $state.go('app.addVehicle');
  }
+
  // GET VEHICLES FROM DB
   this.getVehicles = function (){
 
@@ -86,6 +87,38 @@ angular.module('starter.controllers', [])
                 });
   }
 
+  // GET EXPIRING VEHICLES FROM DB
+  this.getExpiringVehicles = function (){
+
+    self.session = JSON.parse( window.localStorage['session']);
+
+        $http.post("https://monicle.herokuapp.com/getVehicles", { params:    
+                      { 
+                        "username": self.session,
+                        "type": "getExpiringVehicles" 
+                      }
+                    })
+                .success(function(data) {
+                      self.data.expiringVehicleList = data ;
+                      console.log(data);
+                      $ionicLoading.hide();
+                      self.filterItems();
+                })
+                .error(function(data) {
+                    $ionicLoading.hide();
+                    alert('Uh oh. Looks like we screwed up. Unable to post right now.');
+                });
+  }
+
+  this.showExpiringVehicles = function () {
+     
+     self.data.fileteredList = self.data.expiringVehicleList ;
+  }
+
+  this.showAllVehicles = function () {
+     this.filterItems() ;
+  }
+
   $scope.$on('$ionicView.enter', function(e) {
       self.session = JSON.parse( window.localStorage['session']) ; // read the session information
       if (!self.session){
@@ -93,6 +126,7 @@ angular.module('starter.controllers', [])
       }
       else{
        self.getVehicles();
+       self.getExpiringVehicles();
       }
   });
 })
@@ -244,6 +278,11 @@ angular.module('starter.controllers', [])
                                               $ionicLoading, $http, $ionicPopup) {
 
   var self = this ;
+ 
+  this.data = {} ;
+
+  this.data.pageTitle = "Add New Vehicle" ;
+  this.data.editMode = false ;
 
   this.form = $rootScope.selectedItem ;
   
@@ -270,6 +309,8 @@ angular.module('starter.controllers', [])
               this.form.vehicleId = "-1";
           }   
           else{
+              this.data.pageTitle = "Edit Vehicle - " + this.form.registrationNumber + "" ;
+              this.data.editMode = true ;
               this.registrationDate = new Date(this.form.registeredOn);
               this.insuranceDate = new Date(this.form.insuredOn);
               this.secondInsuranceDate = new Date(this.form.secondInsuranceOn);
@@ -421,8 +462,7 @@ angular.module('starter.controllers', [])
                  "techInspectionMonths": this.form.techInspectionMonths,
                
                  "maintenanceInspectionDate": this.maintenanceInspectionDate,
-                 "maintenanceInspectionMonths": this.form.maintenanceInspectionMonths 
-                
+                 "maintenanceInspectionMonths": this.form.maintenanceInspectionMonths  
               }
             })
         .success(function(data) {
@@ -432,9 +472,13 @@ angular.module('starter.controllers', [])
                 template: 'Your Vehicle was saved succesfully!'
               });
 
-              self.form.vehicleVIN = "" ;
-              self.form.registrationNumber = "" ;
-               $ionicLoading.hide();
+              if (!self.data.editMode) {
+                  self.form.vehicleVIN = "" ;
+                  self.form.registrationNumber = "" ;
+              }
+
+             // $state.go('app.home');
+              $ionicLoading.hide();
         })
         .error(function(data) {
             $ionicLoading.hide();
