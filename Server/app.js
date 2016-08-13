@@ -335,19 +335,29 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+var corsOptions = {
+  origin: 'https://balog.herokuapp.com',
+	credentials: true,
+	maxAge: 36000
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); // cors pre-flight
+
 app.use(session({
   resave: true, 
   saveUninitialized: true,
   secret: 'something_very_secret',
-  cookie : { secure : false, maxAge : (10 * 365 * 24 * 60 * 60 * 1000) }, // 10 yrs
+  cookie : { secure : false, 
+						 maxAge : (10 * 365 * 24 * 60 * 60 * 1000),
+						 httpOnly : false
+					  } // 10 yrs
 }));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(cors());
-
 // Session-persisted message middleware
-app.use(function(req, res, next){
+app.use( cors(corsOptions), function(req, res, next){
 
   req.db = db;
   next(); 
@@ -374,7 +384,7 @@ app.post('/checkSession', function(req, res){
 	console.log(" in the session function ");
 	
 	if ( req.session && req.session.user ){ // ALREADY LOGGED IN
-			res.send(req.session.user);
+			res.send(req.session.username);
 			return "SESSION_ACTIVE" ;
 	}
 	else{
@@ -403,7 +413,7 @@ app.post('/login', function(req, res){
 				req.session.user = user;
 				req.session.username = req.body.params.username;
 		  
-				console.log(" saving session user ");
+				console.log(" saving session user " + req.session.username);
 				res.send(req.session.username);
 			  });
 			} else {

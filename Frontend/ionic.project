@@ -4,27 +4,27 @@
   "proxies": [
     {
       "path": "/signUp",
-      "proxyUrl": "https://monicle.herokuapp.com/signUp"
+      "proxyUrl": "http://localhost:3000/signUp"
     },
      {
-      "path": "https://balog.herokuapp.com/checkSession",
-      "proxyUrl": "https://monicle.herokuapp.com/checkSession"
+      "path": "/checkSession",
+      "proxyUrl": "http://localhost:3000/checkSession"
     },
      {
-      "path": "https://balog.herokuapp.com/login",
-      "proxyUrl": "https://monicle.herokuapp.com/login"
+      "path": "/login",
+      "proxyUrl": "http://localhost:3000/login"
     },
      {
       "path": "/logout",
-      "proxyUrl": "https://monicle.herokuapp.com/logout"
+      "proxyUrl": "http://localhost:3000/logout"
     },
     {
       "path": "/addVehicle",
-      "proxyUrl": "https://monicle.herokuapp.com/addVehicle"
+      "proxyUrl": "http://localhost:3000/addVehicle"
     },
      {
       "path": "/getVehicles",
-      "proxyUrl": "https://monicle.herokuapp.com/getVehicles"
+      "proxyUrl": "http://localhost:3000/getVehicles"
     }
   ]
 }

@@ -29,7 +29,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       url: '/app',
       abstract: true,
       templateUrl: 'templates/menu.html',
-      controller: 'DashCtrl as dashCtrl'
+      controller: 'MenuCtrl as menuCtrl'
   })
 
   .state('app.home', {

@@ -8,7 +8,6 @@ angular.module('starter.controllers', [])
  this.fileteredList = {} ;
  this.data.filterKey = "" ;
 
-
  this.openVehicleDetails = function(VIN){
    console.log('open vehicle ' + VIN);
    if (this.data.selectedVehicleVIN === VIN ){
@@ -47,7 +46,7 @@ angular.module('starter.controllers', [])
   this.openVehiclePage = function(){
     $rootScope.selectedItem =  {} ;
     $rootScope.selectedItem.activeStatus = "Active" ;
-    $rootScope.selectedItem.vehicleMake = "N/A" ;    
+    $rootScope.selectedItem.vehicleMake = "" ;
     $rootScope.selectedItem.vehicleType = "Semi-truck" ;
     $rootScope.selectedItem.vehicleId = "-1";
    
@@ -92,29 +91,10 @@ angular.module('starter.controllers', [])
       if (!self.session){
         $state.go('login');
       }
-      else
+      else{
        self.getVehicles();
+      }
   });
-
-   $scope.logout = function(){
-       IonicLogin.logout(self.session.username);
-  }
-
-  $scope.showHome = function(){
-      $state.go('app.home');
-  }
-
-   $scope.showAbout = function(){
-      $state.transitionTo('app.about');
-  }
-
-   $scope.showContact = function(){
-      $state.go('app.contact');
-  }
-
-   $scope.showSettings = function(){
-      $state.go('app.settings');
-  }
 })
 
 .controller('SplashController', function ($scope, $state, $window, $http){
@@ -259,7 +239,7 @@ angular.module('starter.controllers', [])
     }
 })
 
-// HOME PAGE CONTROLLER
+// NEW VEHICLE PAGE CONTROLLER
 .controller('newVehicleController', function($scope, $rootScope, IonicLogin, $state, 
                                               $ionicLoading, $http, $ionicPopup) {
 
@@ -285,7 +265,7 @@ angular.module('starter.controllers', [])
 
               this.form = {} ;
               this.form.activeStatus = "Active" ;
-              this.form.vehicleMake = "N/A" ;    
+              this.form.vehicleMake = "" ;    
               this.form.vehicleType = "Semi-truck" ;
               this.form.vehicleId = "-1";
           }   
@@ -465,4 +445,36 @@ angular.module('starter.controllers', [])
     this.clearForm = function(){
       self.form = {} ;
     }
+})
+
+.controller('MenuCtrl', function($scope, $rootScope, IonicLogin, $state, 
+                                              $ionicLoading, $http, $ionicPopup) {
+
+    var self = this ;
+
+    this.session = JSON.parse( window.localStorage['session']) ;
+
+    this.logout = function(){
+        IonicLogin.logout(self.session.username);
+    }
+
+    this.showHome = function(){
+        $state.go('app.home');
+    }
+
+    this.showAbout = function(){
+        $state.transitionTo('app.about');
+    }
+
+    this.showContact = function(){
+        $state.go('app.contact');
+    }
+
+    this.showSettings = function(){
+        $state.go('app.settings');
+    }
+    this.openHomePage = function(){
+        $state.go('app.home');
+    }
+
 });
