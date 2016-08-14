@@ -6,6 +6,9 @@
 .margin-auto{
     margin: auto;
 }
+.mar-right-20{
+    margin-right: 20px;
+}
 .mar-left-10{
     margin-left: 10px;
 }
@@ -125,4 +128,7 @@ ion-item a {  background-color: #242832 !important;  color: #fff;}
   }
   .formTimeDisplay{
      width:100%; font-size:16px; font-weight:bold;
+  }
+  .linkButton{
+      cursor: pointer; cursor: hand;
   }

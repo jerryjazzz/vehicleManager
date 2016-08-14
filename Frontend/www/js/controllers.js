@@ -7,6 +7,8 @@ angular.module('starter.controllers', [])
  this.data = {} ;
  this.fileteredList = {} ;
  this.data.filterKey = "" ;
+ this.vehiclesList = {} ;
+
 
  this.openVehicleDetails = function(VIN){
    console.log('open vehicle ' + VIN);
@@ -111,11 +113,12 @@ angular.module('starter.controllers', [])
   }
 
   this.showExpiringVehicles = function () {
-     
+     this.data.filterKey = "" ;
      self.data.fileteredList = self.data.expiringVehicleList ;
   }
 
   this.showAllVehicles = function () {
+     this.data.filterKey = "" ;
      this.filterItems() ;
   }
 
@@ -467,18 +470,20 @@ angular.module('starter.controllers', [])
             })
         .success(function(data) {
 
-              $ionicPopup.alert({
-                title: 'Vehicle Added',
-                template: 'Your Vehicle was saved succesfully!'
-              });
-
+              $ionicLoading.hide(); 
+              
               if (!self.data.editMode) {
+                   $ionicPopup.alert({
+                      title: 'Vehicle Added',
+                      template: 'Your Vehicle was added succesfully!'
+                  });
+
                   self.form.vehicleVIN = "" ;
                   self.form.registrationNumber = "" ;
               }
-
-             // $state.go('app.home');
-              $ionicLoading.hide();
+              else{
+                 $state.go('app.home');
+              } 
         })
         .error(function(data) {
             $ionicLoading.hide();
@@ -520,5 +525,4 @@ angular.module('starter.controllers', [])
     this.openHomePage = function(){
         $state.go('app.home');
     }
-
 });
