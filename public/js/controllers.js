@@ -71,7 +71,7 @@ angular.module('starter.controllers', [])
 
     self.session = JSON.parse( window.localStorage['session']);
 
-        $http.post("https://monicle.herokuapp.com/getVehicles", { params:    
+        $http.post("http://www.kamyoni.com/getVehicles", { params:    
                       { 
                         "username": self.session,
                         "type": "getVehicles" 
@@ -113,7 +113,7 @@ angular.module('starter.controllers', [])
 
     self.session = JSON.parse( window.localStorage['session']);
 
-        $http.post("https://monicle.herokuapp.com/getVehicles", { params:    
+        $http.post("http://www.kamyoni.com/getVehicles", { params:    
                       { 
                         "username": self.session,
                         "type": "getExpiringVehicles" 
@@ -169,7 +169,7 @@ angular.module('starter.controllers', [])
             console.log('checking session');
             var sesh = JSON.parse(window.localStorage['session']) ;
 
-              $http.post("https://monicle.herokuapp.com/checkSession",
+              $http.post("http://www.kamyoni.com/checkSession",
                 { params: { "session": JSON.stringify(sesh)}})
                   .success(function(response) {
                     console.log(response);
@@ -464,7 +464,7 @@ angular.module('starter.controllers', [])
     this.session = JSON.parse( window.localStorage['session']) ;
     console.log(this.session) ;
 
-    $http.post("https://monicle.herokuapp.com/addVehicle", { params:
+    $http.post("http://www.kamyoni.com/addVehicle", { params:
               
               { 
                 "vehicleId" : this.form.vehicleId,

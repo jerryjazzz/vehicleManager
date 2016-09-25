@@ -8,7 +8,7 @@ angular.module('starter.services', [])
               template: 'Logging In...'
           });
 
-      $http.post("https://monicle.herokuapp.com/login",
+      $http.post("http://www.kamyoni.com/login",
              { params: {
                          "email": email,
                          "username": email,
@@ -46,7 +46,7 @@ angular.module('starter.services', [])
               template: 'Logging Out...'
           });
 
-        $http.post("https://monicle.herokuapp.com/logout",
+        $http.post("http://www.kamyoni.com/logout",
              { params: { "email": email }})
                .success(function(response) {
 
@@ -80,7 +80,7 @@ angular.module('starter.services', [])
               template: 'Creating Account...'
           });
 
-            $http.post("https://monicle.herokuapp.com/signUp",
+            $http.post("http://www.kamyoni.com/signUp",
                { params: {
                            "email": email,
                            "password": password }
@@ -118,7 +118,7 @@ angular.module('starter.services', [])
               template: 'Loggin In...'
           });
 
-            $http.post("https://monicle.herokuapp.com/socialLogin",
+            $http.post("http://www.kamyoni.com/socialLogin",
                { params: {
                            "email": email,
                            "password": password }
