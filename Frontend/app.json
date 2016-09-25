@@ -1,6 +1,0 @@
-{
-    "name": "Balog app",
-    "description": "A simple Ionic app for Heroku",
-    "logo": "http://pathToYourLogo.png",
-    "keywords": ["ionic", "devdactic", "whatever"]
-}
