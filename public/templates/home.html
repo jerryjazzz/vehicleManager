@@ -1,4 +1,4 @@
-<ion-view view-title="Vehicle Manager Tool - v1.0" class="dashboardView">
+<ion-view view-title="Kamyoni, a Free Vehicle Manager Tool" class="dashboardView">
   
   <ion-content class="padding">
 
@@ -23,9 +23,8 @@
     </div> 
 
      <div style="padding-top:20px;">
-        <h3>List of Vehicles</h3>
-        <p>Total vehicles: <span class="linkButton" ng-click="dashCtrl.showAllVehicles();" style="color: #267fda; font-size:20px;">{{dashCtrl.vehiclesList.length}}</span></p>
-        <p>Expiring vehicles: <span class="linkButton" ng-click="dashCtrl.showExpiringVehicles();" style="color: #e51212; font-size:20px;">{{dashCtrl.data.expiringVehicleList.length}}</span></p>
+        <span>Total vehicles: <span class="linkButton" ng-click="dashCtrl.showAllVehicles();" style="color: #267fda; font-size:20px;">{{dashCtrl.vehiclesList.length}}</span></span>
+        <span style="padding-left:20px;">Expiring vehicles: <span class="linkButton" ng-click="dashCtrl.showExpiringVehicles();" style="color: #e51212; font-size:20px;">{{dashCtrl.data.expiringVehicleList.length}}</span></span>
      </div>
      <hr />
 

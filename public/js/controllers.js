@@ -8,7 +8,7 @@ angular.module('starter.controllers', [])
  this.fileteredList = {} ;
  this.data.filterKey = "" ;
  this.vehiclesList = {} ;
-
+ 
 
  this.openVehicleDetails = function(VIN){
    console.log('open vehicle ' + VIN);

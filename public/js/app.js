@@ -19,6 +19,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       //StatusBar.styleDefault();
        StatusBar.style(1);
     }
+    $ionicConfigProvider.backButton.previousTitleText(false);
   });
 })
 
